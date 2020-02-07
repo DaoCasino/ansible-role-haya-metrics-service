@@ -1,0 +1,13 @@
+---
+# defaults file for ansible-haya
+bc_name: haya
+bc_component_name: "metrics"
+bc_docker_log_driver: "json-file"
+
+bc_path_general: "/opt"
+bc_metrics_server_path_config_template: "configs/config.js.j2"
+bc_metrics_server_path_config: "{{ bc_path_general }}/{{ bc_name }}/{{ bc_component_name }}/config"
+
+bc_haya_metrics_server_mongodb_url: "mongodb://localhost:27017/haya"
+bc_haya_metrics_server_haya_node_url: "http://localhost:8888"
+bc_haya_metrics_server_image: "mixbytes/haya-metrics-service"
