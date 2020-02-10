@@ -21,6 +21,7 @@ def test_docker(host):
     assert daemon.is_running
     assert daemon.is_enabled
 
+
 @pytest.mark.parametrize('file, content', [
   ("/opt/haya/metrics/config/config.js", "mongodb://localhost:27017/haya"),
   ("/opt/haya/metrics/config/config.js", "http://localhost:8888")

@@ -1,0 +1,16 @@
+language: python
+services: docker
+env:
+  global:
+  - ROLE_NAME: haya-metrics-service
+install:
+- pip install molecule docker
+before_script:
+- cd ../
+- mv ansible-role-$ROLE_NAME $ROLE_NAME
+- cd $ROLE_NAME
+script:
+- molecule test
+notifications:
+  slack:
+    secure: X8474R6aBNlComm73uNLrM9SsaTqvQYd/1i92240OgkWnNnp0pi6Teo6qIIA4oLPi+mkkuxWJBmzxjXt+gg+3G8IJU6pNAB6Feq7kFatPF3Iu7SwZcezCvlYo8ys+t3+YOzWoXbKORog7omaG12PeTYl93ilPDtMScPCutA+4rbFBUL5YY9xbvJPDJS1XaIPhMu/6sGrH7mK0NTza76v7NppLae0mtJJNcTqUhXwuq1s3648pOp6TdoVMck3iqbDmHFKbsxXIXfA7xlb9c1Q7z2b0PYnzPUFy2pzoi/FmdJi09S7m4klyhY/uPlLjidArAwUFfHMZVc+nZH0Aux1TlNNFC4oidn66W90vMUcvckKJliNRT1Mixo3q5cYvEvawvc6UiOZKY0gUJY1DrFU4F2nGLFGtDtLtydF2ZK/6pBpGAy+oR+jnatJyXKl+Kx2ebpOEpzrxlHYq1F6Rs67nIvmpM1ium/2hKTZ5QqB2ciGpJE3dbzhMwWpfsJoiywPSZfgxAuyuc83r/wNfUxbS5gDh3er5gMJ4CmIKZQQKsvHqhdEtPybXauh0xii9cJVuQ/yXCYGGX5roawPsTM+oHReP+GcXsKwYSI1dor6FQzCr7G5jyzgmOYJEcJrfiQnD7GWwy5ZfYIXgXU9XF3Yr8Y/NhYaumgoBaJ/qKi3dao=

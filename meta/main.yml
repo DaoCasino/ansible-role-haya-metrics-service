@@ -1,5 +1,6 @@
 ---
 galaxy_info:
+  name: haya-metrics-service
   author: Alexey Pishchulin
   description: Setup haya blockchain metrics omponents.
   company: MixBytes

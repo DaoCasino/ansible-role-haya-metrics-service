@@ -4,25 +4,33 @@ dependency:
   options:
     role-file: requirements.yml
 driver:
-  name: vagrant
-  provider:
-    name: virtualbox
+  name: docker
 lint:
   name: yamllint
 platforms:
-  - name: ubuntu-instance
-    box: ubuntu/bionic64
-    cpus: 2
-    memory: 1024
   - name: centos-instance
-    box: centos/7
-    cpus: 2
-    memory: 1024
+    image: "geerlingguy/docker-centos7-ansible:latest"
+    command: ${MOLECULE_DOCKER_COMMAND:-""}
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    privileged: true
+    pre_build_image: true
+  - name: ubuntu-instance
+    image: "geerlingguy/docker-ubuntu1804-ansible:latest"
+    command: ${MOLECULE_DOCKER_COMMAND:-""}
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    privileged: true
+    pre_build_image: true
 provisioner:
   name: ansible
+  playbooks:
+    prepare:  ../resources/playbooks/prepare.yml
+    converge: ../resources/playbooks/playbook.yml
   lint:
     name: ansible-lint
 verifier:
   name: testinfra
+  directory: ../resources/tests/
   lint:
     name: flake8
