@@ -5,10 +5,12 @@ env:
   - ROLE_NAME: haya-metrics-service
 install:
 - pip install molecule docker
+- chmod +x docker-playbook-test.sh
 before_script:
 - cd ../
 - mv ansible-role-$ROLE_NAME $ROLE_NAME
 - cd $ROLE_NAME
+- ./docker-playbook-test.sh
 script:
 - molecule test
 notifications:
